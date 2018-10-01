@@ -1,9 +1,7 @@
 <% unless current_user?(@user) %>
-<div id="follow_form">
-    <% if current_user.following?(@user) %>
-        <%= render "unfollow" %>
-    <% else %>
-        <%= render "follow" %>
-    <% end %>
-</div>
+    <div id="follow_form">
+        <%= react_component('follow_button',
+                            user: @user.attributes,
+                            relationship: current_user.active_relationships.find_by(followed_id: @user.id)&.attributes) %>
+    </div>
 <% end %>
