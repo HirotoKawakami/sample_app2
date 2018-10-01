@@ -4,10 +4,11 @@ class RelationshipsController < ApplicationController
     # ビューで変数を扱うため、userを@userにする必要がある
     def create
         @user = User.find(params[:followed_id])
-        current_user.follow(@user)
+        @relationship = current_user.follow(@user)
         respond_to do |format|
             format.html { redirect_to @user }
             format.js
+            format.json { render json: @relationship }
         end
     end
 
@@ -17,6 +18,7 @@ class RelationshipsController < ApplicationController
         respond_to do |format|
             format.html { redirect_to @user }
             format.js
+            format.json { render json: nil }
         end
     end
     
