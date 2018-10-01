@@ -1,0 +1,3 @@
+$("#new-comments-<%= @micropost.id %>").val("");
+var html =  "<%= j( render 'comment', comment: @comment ) %>";
+$(html).appendTo("#modal-comments-<%= @micropost.id %>").hide().fadeIn(300);
